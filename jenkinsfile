@@ -29,9 +29,11 @@ pipeline {
             }
         }
         stage('Approval') {
+            timeout(time: 1, unit: 'MINS') {
             input 'Are we ready to Deploy?'
+            }
         }
-                stage('test') {
+                stage('deploy') {
             steps {
                 sh '''
                  echo "Test stage"
