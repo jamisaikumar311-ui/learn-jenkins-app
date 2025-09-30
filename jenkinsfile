@@ -29,9 +29,12 @@ pipeline {
             }
         }
         stage('Approval') {
-            timeout(time: 1, unit: 'MINS') {
-            input 'Are we ready to Deploy?'
+            steps {
+                timeout(time: 1, unit: 'MINS') {
+                input 'Are we ready to Deploy?'
+                }
             }
+
         }
                 stage('deploy') {
             steps {
