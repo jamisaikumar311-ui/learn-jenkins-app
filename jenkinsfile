@@ -28,6 +28,19 @@ pipeline {
                 '''
             }
         }
+        stage('Approval') {
+            input 'Are we ready to Deploy?'
+        }
+                stage('test') {
+            steps {
+                sh '''
+                 echo "Test stage"
+                 test -f build/index.html
+                 npm --version
+                 npm test
+                '''
+            }
+        }
     }
     post {
         always{
