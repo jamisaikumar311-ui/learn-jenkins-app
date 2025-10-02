@@ -12,13 +12,16 @@ pipeline {
                     image 'amazon/aws-cli'
                     args "--entrypoint=''"
                 }
+            }
+            environment {
+                AWS_S3_BUCKET = 'mycode007' 
             }            
             steps {
                 withCredentials([usernamePassword(credentialsId: 'myuser', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                  sh '''
                    aws --version
-                   echo "Life always Sucks" > sonu.txt 
-                   aws s3 cp sonu.txt s3://mycode007/Rules/sonu.txt
+                   echo "Life always Sucks" > raju.txt 
+                   aws s3 cp raju.txt s3://$AWS_S3_BUCKET/Rules/raju.txt
                    aws s3 ls 
                  '''
                 }                
