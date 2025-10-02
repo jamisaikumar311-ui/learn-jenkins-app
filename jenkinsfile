@@ -20,8 +20,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'myuser', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                  sh '''
                    aws --version
-                   echo "Life always Sucks" > raju.txt 
-                   aws s3 cp raju.txt s3://$AWS_S3_BUCKET/Rules/raju.txt
+                   echo "Life always Sucks" > raju.html 
+                   aws s3 cp raju.html s3://$AWS_S3_BUCKET/Rules/raju.html
                    aws s3 ls 
                  '''
                 }                
