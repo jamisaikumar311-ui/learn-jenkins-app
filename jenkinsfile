@@ -21,7 +21,7 @@ pipeline {
                  sh '''
                    aws --version
                    echo "Life always Sucks" > raju.html 
-                   aws s3 cp raju.html s3://$AWS_S3_BUCKET/Rules/raju.html
+                   aws s3 cp raju.html s3://$AWS_S3_BUCKET/raju.html
                    aws s3 ls 
                  '''
                 }                
