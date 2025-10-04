@@ -10,6 +10,7 @@ pipeline {
             steps {
                 sh '''
                   echo "running the build"
+                  echo "Love is in the AIR" > Index.html 
                   node --version
                   npm --version
                   npm ci
@@ -18,21 +19,6 @@ pipeline {
                 '''  
             }
         }
-        stage('Build Docker image') {
-            agent {
-                docker {
-                    image 'my-aws-cli'
-                    reuseNode true
-                    args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
-                }
-            }
-
-            steps {
-                sh '''
-                    docker build -t myjenkinsapp .
-                '''
-            }
-        }           
         stage('AWS') {
             agent {
                 docker {
