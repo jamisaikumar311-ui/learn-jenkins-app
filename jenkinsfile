@@ -4,7 +4,14 @@ pipeline {
             image 'node:18-alpine'
             reuseNode true
         }
-    }    
+    }
+    environment {
+        AWS_S3_BUCKET = 'mycode007'
+        REACT_APP_VERSION = "1.0.$BUILD_ID"
+        APP_NAME = 'learnproject'
+        AWS_DEFAULT_REGION = 'ap-south-1'
+        AWS_DOCKER_REGISTRY = '566970125924.dkr.ecr.ap-south-1.amazonaws.com'         
+    }                         
     stages {
         stage('build') {
             steps {
@@ -27,9 +34,6 @@ pipeline {
                     args "--entrypoint=''"
                 }
             }
-            environment {
-                AWS_S3_BUCKET = 'mycode007' 
-            }            
             steps {
                 withCredentials([usernamePassword(credentialsId: 'myuser', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                  sh '''
