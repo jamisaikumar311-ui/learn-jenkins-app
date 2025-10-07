@@ -16,10 +16,10 @@ pipeline {
         stage('build') {
             steps {
                 sh '''
-                  echo "running the build" > love.txt
+                  echo "running the build" > move.txt
                   echo "Love is in the AIR" > Index.html 
                   echo "just love it " >> Index.html
-                  rm -f love.txt
+                  rm -f move.txt
                   node --version
                   npm --version
                   npm ci
